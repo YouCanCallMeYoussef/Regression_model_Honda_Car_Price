@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regression Model UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        select{
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px 12px;
+            width: 200px; /* Adjust the width as needed */
+            margin-bottom: 10px; /* Space between select elements */
+        }
+
+        /* Styling the options inside the select */
+        select{
+            padding: 10px; /* Space inside each option */
+        }
+
+        /* Adding a focus effect */
+        select,input{
+            border-color: #007bff; /* Change border color on focus */
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.5); /* Add shadow on focus */
+            outline: none; /* Remove default focus outline */
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Regression Model Predictor</h2>
+    <form action="{{ url_for('predict')}}" method="POST" >
+        <label for="feature1">Release Year:</label><br>
+        <input type="number" id="feature1" name="Year" step="any" required><br><br>
+
+        <label for="feature5">kms Driven:</label><br>
+        <input type="number" id="feature5" name="Kms_Driven" step="any" required><br><br>
+
+
+        <label for="feature2">Car Model:</label><br>
+        <select id="feature2" name="Car Model" required>
+            <option value="0">Brio</option>
+            <option value="1">City</option>
+            <option value="2">Civic</option>
+            <option value="3">Jazz</option>
+            <option value="4">WR-V</option>
+            <option value="5">Amaze</option>
+        </select><br><br>
+
+        <label for="feature3">Fuel type:</label><br>
+        <select id="feature3" name="Fuel_Type_Petrol" required>
+            <option value="1">Petrol</option>
+            <option value="0">Diesel</option>
+        </select><br><br>
+        <label for="feature4">Suspension Type:</label><br>
+        <select id="feature4" name="Transmission_auto" required>
+            <option value="0">Manuel</option>
+            <option value="1">Automatic</option>
+        </select><br><br>
+
+        <!-- Add more inputs for additional features -->
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <h3>{{ prediction_text }}</h3>
+
+</body>
